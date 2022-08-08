@@ -40,7 +40,7 @@ namespace MoviesService
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringKeys.App)));
 
             services
-                .AddConsul(Configuration)
+                //.AddConsul(Configuration)
                 .AddMessageBroker(Configuration)
                 .AddEventStore<MovieAggregate>(Configuration, options => options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringKeys.EventStore)))
                 .AddOutbox(Configuration, options => options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringKeys.Outbox)))
@@ -60,7 +60,7 @@ namespace MoviesService
             app
                 .UseLogging(Configuration, loggerFactory)
                 .UseSwagger(Configuration)
-                .UseConsul(lifetime)
+                //.UseConsul(lifetime)
                 .UseCore();
 
             app.UseSubscribeAllEvents();
